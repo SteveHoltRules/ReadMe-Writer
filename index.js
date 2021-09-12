@@ -52,7 +52,7 @@ const outLine = outlineData => {
     } else {
       return portflioData;
     }
-  })
+  });
 }
 
 // TODO: Create a function to write README file
