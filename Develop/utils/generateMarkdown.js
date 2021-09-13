@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 
@@ -24,6 +24,15 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
+async function getPosts(userId) {
+  const response = await fetch(
+    `https://api.github.com/licenses/gpl-3.0`
+);
+
+}
+
+
+
 const renderLicenseSection = function () { 
 
   var apiUrl = `https://api.github.com/licenses/gpl-3.0`;
