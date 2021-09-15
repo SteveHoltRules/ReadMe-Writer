@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 
+const fs = require('fs');
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 
 // If there is no license, return an empty string
@@ -21,34 +23,53 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-async function getPosts(userId) {
-  const response = await fetch(`https://api.github.com/licenses/gpl-3.0`);
-  if(!response.ok) {
-    throw 
-  }
-}
 
+//The render license section worked!!!! It fetches everything as an object
 const renderLicenseSection = function () {
   var apiUrl = `https://api.github.com/licenses/gpl-3.0`;
   console.log(apiUrl);
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
-        // var shortDesc = data.description;
-        // console.log(shortDesc);
+        shortDesc = data.description;
+        console.log(shortDesc);
+        setofPerm = data.permissions;
+        console.log(setofPerm);
+        setofCond = data.conditions;
+        console.log(setofCond);
       });
     }
   });
   //parse the license and return it as parts
 };
 
-renderLicenseSection();
+// renderLicenseSection();
 //
 
-// ${license
-//     .filter(({ feature }) => feature)
-//     .map(( { }))}
+//create the write file
+const writeFile = fileContent => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./develop/dist/README.md', fileContent, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve({
+        ok: true,
+        message: "File created!",
+      });
+    });
+  });
+};
+
+module.exports = { writeFile };
+
+// const copyFile = fileContent => {
+//   return new Promise((resolve, reject) => {
+//     fs.copyFile('./src/styles.css', '')
+//   })
+// }
 
 // TODO: Create a function to generate markdown for README
 // function generateMarkdown(data) {
@@ -63,5 +84,3 @@ renderLicenseSection();
 //   ${description}
 //   ${}`
 // }
-
-// module.exports = generateMarkdown;
