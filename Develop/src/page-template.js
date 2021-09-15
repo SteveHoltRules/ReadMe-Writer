@@ -1,25 +1,24 @@
 //create the readMe array
-const generateProject = (readMeArr) => {
+const generateProject = readMeArr => {
+  console.log(readMeArr);
   return `
-  ${readMeArr.map(({ title, descriptionTitle, description }) => {
-      return `
-# ${title}
+# ${readMeArr.title}
       
-## ${descriptionTitle}
+## ${readMeArr.descriptionTitle}
 
-${description}`;
-
-    })
-    .join('')}`;
+${readMeArr.description}`;
 };
 
-module.exports = (generateData) => {
-  console.log(generateData);
 
-  //destructure project and about data from template
-  //I can take the additional reference from the license here as license and then generate(license) down below like the generate(about)
-  const { readMe } = generateData;
+module.exports = generateProject;
 
-  return `
-  ${generateProject(readMe)}`;
-};
+// module.exports = (generateData) => {
+//   console.log(generateData);
+
+//   //destructure project and about data from template
+//   //I can take the additional reference from the license here as license and then generate(license) down below like the generate(about)
+//   const { readMe } = generateData;
+
+//   return `
+//   ${generateProject(readMe)}`;
+// };

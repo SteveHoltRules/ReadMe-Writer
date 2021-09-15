@@ -49,19 +49,19 @@ const promptProject = project => {
           return false;
         }
       },
-    },
-    {
-      type: "editor",
-      name: "description",
-      message: "What is a brief description of your project?",
-      validate: (editorDescription) => {
-        if (editorDescription) {
-          return true;
-        } else {
-          console.log("Please write a description of your project");
-          return false;
-        }
-      },
+    // },
+    // {
+    //   type: "editor",
+    //   name: "description",
+    //   message: "What is a brief description of your project?",
+    //   validate: (editorDescription) => {
+    //     if (editorDescription) {
+    //       return true;
+    //     } else {
+    //       console.log("Please write a description of your project");
+    //       return false;
+    //     }
+    //   },
     }
   ])
   .then(projectData => {
