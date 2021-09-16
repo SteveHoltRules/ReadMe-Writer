@@ -23,20 +23,6 @@ const promptUser = () => {
         }
       },
     },
-  ]);
-};
-
-const promptProject = project => {
-  //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
-  if(!project.readMe) {
-    project.readMe = [];
-  }
-  console.log(`
-  =================
-  Add a New Project
-  =================
-  `);
-  return inquirer.prompt([
     {
       type: "input",
       name: "descriptionTitle",
@@ -49,38 +35,34 @@ const promptProject = project => {
           return false;
         }
       },
-    // },
-    // {
-    //   type: "editor",
-    //   name: "description",
-    //   message: "What is a brief description of your project?",
-    //   validate: (editorDescription) => {
-    //     if (editorDescription) {
-    //       return true;
-    //     } else {
-    //       console.log("Please write a description of your project");
-    //       return false;
-    //     }
-    //   },
+      type: "editor",
+      name: "description",
+      message: "What is a brief description of your project?",
+      validate: (editorDescription) => {
+        if (editorDescription) {
+          return true;
+        } else {
+          console.log("Please write a description of your project");
+          return false;
+        }
+      },
     }
-  ])
-  .then(projectData => {
-    project.readMe.push(projectData);
-    if(projectData.confirmAddProject) {
-      return promptProject(project);
+  ]).then(readMeArr => {
+    return readMeArr;
+    if(readMeArr.confirm) {
+      return readMeArr;
     } else {
-      return project;
+      return readMeArr;
     }
   });
 };
 
 promptUser()
-  .then(promptProject)
-  .then(projectData => {
-    return generateProject(projectData);
+  .then(readMeArr => {
+    return generateProject(readMeArr);
   })
-  .then(pageHtml => {
-    return writeFile(pageHtml);
+  .then(generateMarkdown => {
+    return writeFile(generateMarkdown);
   });
   // .then((writeFileResponse) => {
   //   console.log(writeFileResponse);
