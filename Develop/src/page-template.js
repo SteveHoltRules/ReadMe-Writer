@@ -1,4 +1,7 @@
 //create the readMe array
+
+//In creating the readme array, it has to be sequential, and the TOC has to be self generated based on the headings...
+//Extended, create a template in 
 const generateProject = (readMeArr) => {
   console.log(readMeArr);
   return `
