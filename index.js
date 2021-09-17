@@ -9,65 +9,82 @@ const generateProject = require("./Develop/src/page-template.js");
 // const questions = []; - why does give an empty array for questions?
 
 const promptUser = () => {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "title",
-      message: "What is the title of your README?",
-      validate: (titleInput) => {
-        if (titleInput) {
-          return true;
-        } else {
-          console.log("Please name the readme");
-          return false;
-        }
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the title of your README?",
+        validate: (titleInput) => {
+          if (titleInput) {
+            return true;
+          } else {
+            console.log("Please name the readme");
+            return false;
+          }
+        },
       },
-    },
-    {
-      type: "input",
-      name: "descriptionTitle",
-      message: "What is your description title?",
-      validate: (dtitleInput) => {
-        if (dtitleInput) {
-          return true;
-        } else {
-          console.log("Please name the readme");
-          return false;
-        }
+      {
+        type: "confirm",
+        name: "confirmDescription",
+        message:"Would you like a description added?",
+        default: true
       },
-      type: "editor",
-      name: "description",
-      message: "What is a brief description of your project?",
-      validate: (editorDescription) => {
-        if (editorDescription) {
-          return true;
-        } else {
-          console.log("Please write a description of your project");
-          return false;
-        }
+      {
+        type: "input",
+        name: "descriptionTitle",
+        message: "What is your description title?",
+        when: ({ confirmDescription }) => {
+          if(confirmDescription) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        validate: (dtitleInput) => {
+          if (dtitleInput) {
+            return true;
+          } else {
+            console.log("Please name the readme");
+            return false;
+          }
+        },
       },
-    }
-  ]).then(readMeArr => {
-    return readMeArr;
-    if(readMeArr.confirm) {
+      {
+        type: "editor",
+        name: "description",
+        message: "What is a brief description of your project?",
+        validate: (editorDescription) => {
+          if (editorDescription) {
+            return true;
+          } else {
+            console.log("Please write a description of your project");
+            return false;
+          }
+        },
+      },
+    ])
+    .then((readMeArr) => {
       return readMeArr;
-    } else {
-      return readMeArr;
-    }
-  });
+      if (readMeArr.confirm) {
+        return readMeArr;
+      } else {
+        return readMeArr;
+      }
+    });
 };
 
 promptUser()
-  .then(readMeArr => {
+  .then((readMeArr) => {
     return generateProject(readMeArr);
   })
-  .then(generateMarkdown => {
+  .then((generateMarkdown) => {
     return writeFile(generateMarkdown);
   });
-  // .then((writeFileResponse) => {
-  //   console.log(writeFileResponse);
-  //   return copyFile();
-  // });
+// .then((writeFileResponse) => {
+//   console.log(writeFileResponse);
+//   return copyFile();
+// });
 
 // const license = () => {
 //   //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
@@ -114,7 +131,6 @@ promptUser()
 //       }
 //     });
 // };
-
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
