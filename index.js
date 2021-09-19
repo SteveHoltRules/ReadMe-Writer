@@ -7,11 +7,11 @@ const generateProject = require("./Develop/src/page-template.js");
 
 // TODO: Create an array of questions for user input
 // const questions = []; - why does give an empty array for questions?
-readMeArr = [];
+readMeObj = {};
 
 const readMeTitle = () => {
-  if (!readMeArr) {
-    readMeArr = [];
+  if (!readMeObj) {
+    readMeObj = {};
   }
   return inquirer
     .prompt([
@@ -30,15 +30,18 @@ const readMeTitle = () => {
       },
     ])
     .then((readMeData) => {
+      console.log("This is readMeData");
       console.log(readMeData);
-      const data = Object.entries(readMeData);
-      readMeArr.push(data);
-      return readMeArr;
+      readMeObj = Object.assign(readMeData);
+      console.log("This is readMeObj with the first assign");
+      console.log(readMeObj);
+      return readMeObj;
     });
 };
 
-const readMeDiscrip = () => {
-  console.log(readMeArr);
+const readMeSections = () => {
+  //why is this blank? I am not using readMeObj
+  console.log(readMeObj);
   return inquirer
     .prompt([
       {
@@ -82,28 +85,24 @@ const readMeDiscrip = () => {
       },
     ])
     .then((readMeArrDesc) => {
-      console.log(readMeArr);
+      console.log(readMeObj);
       console.log(readMeArrDesc);
       if (readMeArrDesc.confirmDescription) {
-        const data = Object.entries(readMeArrDesc);
-        readMeArr.push(data);
-        return readMeArr;
-      } else {
-        return readMeArr;
+        // const data = Object.entries(readMeArrDesc);
+        readMeObj["descriptionTitle"] = readMeArrDesc.descriptionTitle;
+        return readMeObj;
+      } else { 
+        return readMeObj;
       }
     });
 };
 
 readMeTitle()
-  .then(readMeDiscrip)
-  .then((readMeArr) => {
-    generateProject(readMeArr);
+  .then(readMeSections)
+  .then((readMeObj) => {
+    generateProject(readMeObj);
   });
-
-//   (readMeArr) => {
-//   return generateProject(readMeArr);
-// })
-// .then((generateMarkdown) => {
+//   .then((generateMarkdown) => {
 //   return writeFile(generateMarkdown);
 // });
 // .then((writeFileResponse) => {

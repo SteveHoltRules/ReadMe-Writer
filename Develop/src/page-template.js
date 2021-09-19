@@ -18,9 +18,16 @@ const generateProject = (readMeArr) => {
   console.log(remainder);
   const format = []
   for (var i = 0; i < remainder.length; i++) {
-    format.push(`##${remainder[i]}`);
+    format.push(`
+##${remainder[i]}
+`);
     };
-  console.log(format)
+  console.log("This is format");
+  console.log(format.join(' '));
+  const mdText = format.join(' ').toString();
+  console.log("This is mdText");
+  console.log(mdText);
+  return mdText; 
 };
 
 
