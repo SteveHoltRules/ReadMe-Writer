@@ -7,8 +7,12 @@ const generateProject = require("./Develop/src/page-template.js");
 
 // TODO: Create an array of questions for user input
 // const questions = []; - why does give an empty array for questions?
+readMeArr = [];
 
-const promptUser = () => {
+const readMeTitle = () => {
+  if (!readMeArr) {
+    readMeArr = [];
+  }
   return inquirer
     .prompt([
       {
@@ -24,18 +28,31 @@ const promptUser = () => {
           }
         },
       },
+    ])
+    .then((readMeData) => {
+      console.log(readMeData);
+      const data = Object.entries(readMeData);
+      readMeArr.push(data);
+      return readMeArr;
+    });
+};
+
+const readMeDiscrip = () => {
+  console.log(readMeArr);
+  return inquirer
+    .prompt([
       {
         type: "confirm",
         name: "confirmDescription",
-        message:"Would you like a description added?",
-        default: true
+        message: "Would you like a description added?",
+        default: true,
       },
       {
         type: "input",
         name: "descriptionTitle",
         message: "What is your description title?",
         when: ({ confirmDescription }) => {
-          if(confirmDescription) {
+          if (confirmDescription) {
             return true;
           } else {
             return false;
@@ -45,28 +62,31 @@ const promptUser = () => {
           if (dtitleInput) {
             return true;
           } else {
-            console.log("Please name the readme");
+            console.log("Please title the description");
             return false;
           }
-        },
-      },
-      {
-        type: "editor",
-        name: "description",
-        message: "What is a brief description of your project?",
-        validate: (editorDescription) => {
-          if (editorDescription) {
-            return true;
-          } else {
-            console.log("Please write a description of your project");
-            return false;
-          }
+          //   },
+          // },
+          // {
+          //   type: "editor",
+          //   name: "description",
+          //   message: "What is a brief description of your project?",
+          //   validate: (editorDescription) => {
+          //     if (editorDescription) {
+          //       return true;
+          //     } else {
+          //       console.log("Please write a description of your project");
+          //       return false;
+          //     }
         },
       },
     ])
-    .then((readMeArr) => {
-      return readMeArr;
-      if (readMeArr.confirm) {
+    .then((readMeArrDesc) => {
+      console.log(readMeArr);
+      console.log(readMeArrDesc);
+      if (readMeArrDesc.confirmDescription) {
+        const data = Object.entries(readMeArrDesc);
+        readMeArr.push(data);
         return readMeArr;
       } else {
         return readMeArr;
@@ -74,13 +94,18 @@ const promptUser = () => {
     });
 };
 
-promptUser()
+readMeTitle()
+  .then(readMeDiscrip)
   .then((readMeArr) => {
-    return generateProject(readMeArr);
-  })
-  .then((generateMarkdown) => {
-    return writeFile(generateMarkdown);
+    generateProject(readMeArr);
   });
+
+//   (readMeArr) => {
+//   return generateProject(readMeArr);
+// })
+// .then((generateMarkdown) => {
+//   return writeFile(generateMarkdown);
+// });
 // .then((writeFileResponse) => {
 //   console.log(writeFileResponse);
 //   return copyFile();

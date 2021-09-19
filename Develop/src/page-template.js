@@ -1,21 +1,28 @@
 //create the readMe array
 
 //In creating the readme array, it has to be sequential, and the TOC has to be self generated based on the headings...
-//Extended, create a template in 
+//Extended, create a template in
+const generateTOC = (aboutTOC) => {
+  const concreteTOC = [...aboutTOC];
+  if (!aboutTOC) {
+    return "";
+  }
+};
+
+//How do I only pass into the generate projects the variables that are passed from the prompt?
+
 const generateProject = (readMeArr) => {
   console.log(readMeArr);
-  return `
-# ${readMeArr.title}
-
-## ${readMeArr.descriptionTitle}
-
-${readMeArr.description}
-
-# Table of Contents
-  1.[Title](#title)
-
-`
+  const remainder = Object.values(readMeArr);
+  console.log("This is remainder");
+  console.log(remainder);
+  const format = []
+  for (var i = 0; i < remainder.length; i++) {
+    format.push(`##${remainder[i]}`);
+    };
+  console.log(format)
 };
+
 
 
 module.exports = generateProject;
@@ -31,3 +38,13 @@ module.exports = generateProject;
 //   ${generateProject(readMe)}
 //   ${generateProject}`;
 // };
+
+
+//   return `
+// # ${readMeArr.title}
+//   ${readMeArr.map(({ title, descriptionTitle }) => {
+//     if (!title) {
+//       readMeArr.descriptionTitle;
+//     } else {
+//     }
+//   })}`;
