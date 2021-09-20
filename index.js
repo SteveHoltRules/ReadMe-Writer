@@ -115,18 +115,22 @@ const license = () => {
     });
 };
 
-license()
+// license()
+//   .then((license) => {
+//     console.log("License");
+//     console.log(license);
+//     renderLicenseSection(license);
+//   });
+
+readMeTitle()
+  .then(readMeSections)
+  .then((readMeObj) => {
+    generateProject(readMeObj);
+  })
+  .then(license)
   .then((license) => {
-    console.log("License");
-    console.log(license);
     renderLicenseSection(license);
   });
-
-// readMeTitle()
-//   .then(readMeSections)
-//   .then((readMeObj) => {
-//     generateProject(readMeObj);
-//   });
 //   .then((generateMarkdown) => {
 //   return writeFile(generateMarkdown);
 // });

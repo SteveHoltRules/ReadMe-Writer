@@ -20,6 +20,7 @@ var renderLicenseSection = function (license) {
           console.log(licenseSect);
           licenseSect.push(`${data.conditions}`);
           console.log(licenseSect);
+          return licenseSect;
         });
       }
     })
