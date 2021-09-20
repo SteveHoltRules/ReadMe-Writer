@@ -5,6 +5,8 @@ const { writeFile } = require("./Develop/utils/generateMarkdown.js");
 
 const generateProject = require("./Develop/src/page-template.js");
 
+const renderLicenseSection = require("./Develop/src/license-template.js");
+
 // TODO: Create an array of questions for user input
 // const questions = []; - why does give an empty array for questions?
 readMeObj = {};
@@ -40,7 +42,7 @@ const readMeTitle = () => {
 };
 
 const readMeSections = () => {
-  //why is this blank? I am not using readMeObj
+  //test the readMeObj
   console.log(readMeObj);
   return inquirer
     .prompt([
@@ -68,19 +70,6 @@ const readMeSections = () => {
             console.log("Please title the description");
             return false;
           }
-          //   },
-          // },
-          // {
-          //   type: "editor",
-          //   name: "description",
-          //   message: "What is a brief description of your project?",
-          //   validate: (editorDescription) => {
-          //     if (editorDescription) {
-          //       return true;
-          //     } else {
-          //       console.log("Please write a description of your project");
-          //       return false;
-          //     }
         },
       },
     ])
@@ -88,7 +77,6 @@ const readMeSections = () => {
       console.log(readMeObj);
       console.log(readMeArrDesc);
       if (readMeArrDesc.confirmDescription) {
-        // const data = Object.entries(readMeArrDesc);
         readMeObj["descriptionTitle"] = readMeArrDesc.descriptionTitle;
         return readMeObj;
       } else { 
@@ -97,11 +85,48 @@ const readMeSections = () => {
     });
 };
 
-readMeTitle()
-  .then(readMeSections)
-  .then((readMeObj) => {
-    generateProject(readMeObj);
+const license = () => {
+  //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "license",
+        message: "What type of license is included for this project?",
+        choices: [
+          "MIT",
+          "LGPL-3.0",
+          "MPL-2.0",
+          "AGPL-3.0",
+          "Unlicense",
+          "Apache-2.0",
+          "GPL-3.0",
+        ],
+      },
+    ])
+    .then((licenseData) => {
+      console.log("This license");
+      console.log(licenseData);
+      let licenseObj = Object.values(licenseData);
+      licenseObj.toString();
+      console.log("This is readMeObj with the License assign");
+      console.log(licenseObj);
+      return licenseObj;
+    });
+};
+
+license()
+  .then((license) => {
+    console.log("License");
+    console.log(license);
+    renderLicenseSection(license);
   });
+
+// readMeTitle()
+//   .then(readMeSections)
+//   .then((readMeObj) => {
+//     generateProject(readMeObj);
+//   });
 //   .then((generateMarkdown) => {
 //   return writeFile(generateMarkdown);
 // });
@@ -109,52 +134,6 @@ readMeTitle()
 //   console.log(writeFileResponse);
 //   return copyFile();
 // });
-
-// const license = () => {
-//   //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
-//   return inquirer.prompt([
-//     {
-//       type: "list",
-//       name: "license",
-//       message: "What type of license is included for this project?",
-//       choices: [
-//         "MIT",
-//         "LGPL-3.0",
-//         "MPL-2.0",
-//         "AGPL-3.0",
-//         "Unlicense",
-//         "Apache-2.0",
-//         "GPL-3.0",
-//       ],
-//     },
-//   ]);
-// };
-
-// const outLine = (outlineData) => {
-//   if (!outlineData.outline) {
-//     outlineData.outline = [];
-//   }
-//   console.log(`
-//   =================
-//   Add a New Project
-//   =================`);
-//   return inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         name: "name",
-//         message: "What is the name of your project?",
-//       },
-//     ])
-//     .then((readmeOutline) => {
-//       outlineData.outline.push(readmeOutline);
-//       if (projectData.confirmAddProject) {
-//         return promptProject(portfolioData);
-//       } else {
-//         return portflioData;
-//       }
-//     });
-// };
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}

@@ -17,6 +17,7 @@ console.log(renderLicenseBadge());
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
+   var license = getlicense;
   `https://shields.io/github/${license}/${userName}/${repoName}`//return the license link from the license json based on input
   `https://shields.io/github/${license}/${userName}/${repoName}`;
 }
@@ -25,26 +26,28 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 
 //The render license section worked!!!! It fetches everything as an object
-const renderLicenseSection = function () {
-  var apiUrl = `https://api.github.com/licenses/gpl-3.0`;
+var renderLicenseSection = function (license) {
+  var apiUrl = `https://api.github.com/licenses/${license}`;
   console.log(apiUrl);
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        shortDesc = data.description;
-        console.log(shortDesc);
-        setofPerm = data.permissions;
-        console.log(setofPerm);
-        setofCond = data.conditions;
-        console.log(setofCond);
-      });
-    }
-  });
-  //parse the license and return it as parts
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          shortDesc = data.description;
+          console.log(shortDesc);
+          setofPerm = data.permissions;
+          console.log(setofPerm);
+          setofCond = data.conditions;
+          console.log(setofCond);
+        });
+      }
+    })
+    .catch(function (error) {
+      //notice this catch getting changed out to the end of the .then()
+      alert("Unable to connect to gitHub license");
+    });
 };
 
-// renderLicenseSection();
-//
 
 //create the write file
 const writeFile = fileContent => {
@@ -63,7 +66,8 @@ const writeFile = fileContent => {
   });
 };
 
-module.exports = { writeFile };
+module.exports = renderLicenseSection;
+// module.exports = { writeFile };
 
 // const copyFile = fileContent => {
 //   return new Promise((resolve, reject) => {
