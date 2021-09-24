@@ -8,8 +8,10 @@ const generateProject = require("./Develop/src/page-template.js");
 const renderLicenseSection = require("./Develop/src/license-template.js");
 
 // TODO: Create an array of questions for user input
-// const questions = []; - why does give an empty array for questions?
-readMeObj = {};
+
+// const questions = []
+
+var readMeObj = {};
 
 const readMeTitle = () => {
   if (!readMeObj) {
@@ -85,6 +87,8 @@ const readMeSections = () => {
     });
 };
 
+
+
 const license = () => {
   //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
   return inquirer
@@ -108,43 +112,24 @@ const license = () => {
       console.log("This license");
       console.log(licenseData);
       let licenseObj = Object.values(licenseData);
-      licenseObj.toString();
+      licenseObj.join(' ');
       console.log("This is readMeObj with the License assign");
       console.log(licenseObj);
       return licenseObj;
     });
 };
 
-// license()
-//   .then((license) => {
-//     console.log("License");
-//     console.log(license);
-//     renderLicenseSection(license);
-//   });
-
+// TODO: Create a function to initialize app
 readMeTitle()
   .then(readMeSections)
   .then((readMeObj) => {
-    generateProject(readMeObj);
+    return generateProject(readMeObj);
   })
-  .then(license)
-  .then((license) => {
-    renderLicenseSection(license);
-  });
-//   .then((generateMarkdown) => {
-//   return writeFile(generateMarkdown);
-// });
-// .then((writeFileResponse) => {
-//   console.log(writeFileResponse);
-//   return copyFile();
-// });
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-// init()
-//   .then(writeToFile)
+  //my stuck - I am attempting to retrieve functions here and returning two separate strings. 
+  // .then(license)
+  // .then((license) => {
+  //   return renderLicenseSection(license);
+  // })
+  .then((generateMarkdown) => {
+    writeFile(generateMarkdown);
+});

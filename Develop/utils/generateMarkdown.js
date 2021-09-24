@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 const fs = require('fs');
 
 // TODO: Create a function that returns a license badge based on which license is passed in
@@ -22,37 +20,10 @@ function renderLicenseLink(license) {
   `https://shields.io/github/${license}/${userName}/${repoName}`;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-
-//The render license section worked!!!! It fetches everything as an object
-var renderLicenseSection = function (license) {
-  var apiUrl = `https://api.github.com/licenses/${license}`;
-  console.log(apiUrl);
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          shortDesc = data.description;
-          console.log(shortDesc);
-          setofPerm = data.permissions;
-          console.log(setofPerm);
-          setofCond = data.conditions;
-          console.log(setofCond);
-        });
-      }
-    })
-    .catch(function (error) {
-      //notice this catch getting changed out to the end of the .then()
-      alert("Unable to connect to gitHub license");
-    });
-};
-
-
 //create the write file
 const writeFile = fileContent => {
   return new Promise((resolve, reject) => {
-    fs.writeFile('./develop/dist/README.md', fileContent, err => {
+    fs.writeFile('Develop/dist/README.md', fileContent, err => {
       if (err) {
         reject(err);
         return;
@@ -66,8 +37,7 @@ const writeFile = fileContent => {
   });
 };
 
-module.exports = renderLicenseSection;
-// module.exports = { writeFile };
+module.exports = { writeFile };
 
 // const copyFile = fileContent => {
 //   return new Promise((resolve, reject) => {

@@ -20,7 +20,9 @@ var renderLicenseSection = function (license) {
           console.log(licenseSect);
           licenseSect.push(`${data.conditions}`);
           console.log(licenseSect);
-          return licenseSect;
+          const newLicenseSect = licenseSect.join(' ');
+          console.log(typeof(newLicenseSect));
+          return newLicenseSect;
         });
       }
     })
@@ -30,20 +32,34 @@ var renderLicenseSection = function (license) {
     });
 };
 
+
+
 var renderBadge = function (license) {
   var shieldBadge = `https://shields.io/github/${license}`;
-  console.log(shieldBadge);
-  const format = [];
-  fetch(shieldBadge)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {});
-      }
-    })
-    .catch(function (error) {
-      //notice this catch getting changed out to the end of the .then()
-      alert("Unable to connect to gitHub license");
-    });
+  console.log(typeof(shieldBadge));
+  return shieldBadge;
+  // fetch(shieldBadge)
+  //   .then(function (response) {
+  //     if (response.ok) {
+  //       response.json().then(function (data) {
+  //         console.log(shieldBadge);
+  //         const shield = shieldBadge.join('');
+  //         return shield;
+  //       });
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     //notice this catch getting changed out to the end of the .then()
+  //     alert("Unable to connect to gitHub license");
+  //   });
+};
+
+const licenseandBadge = (license) => {
+  renderLicenseSection(license);
+  console.log(renderLicenseSection(license));
+  // renderBadge(license);
+  // console.log(renderBadge);
 };
 
 module.exports = renderLicenseSection;
+// module.exports = licenseandBadge;

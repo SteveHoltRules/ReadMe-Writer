@@ -19,39 +19,45 @@ const generateProject = (readMeArr) => {
   const format = []
   for (var i = 0; i < remainder.length; i++) {
     format.push(`
-##${remainder[i]}
+## ${remainder[i]}
 `);
     };
+  format.push(`
+1. [Title](#title) 
+2. [Desciption Title](#descriptionTitle)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Credits](#credits)
+6. [License](#license)
+7. [Badges](#badges)
+8. [Features](#features)
+9. [Contributing](#contributing)
+10. [Tests](#tests)
+
+## Installation
+
+## Usage
+
+## Credits
+
+## License
+
+## Badges
+
+## Features
+
+## Contributing
+
+## Tests`);
   console.log("This is format");
   console.log(format.join(' '));
-  const mdText = format.join(' ').toString();
+  const mdText = format.join(' ');
   console.log("This is mdText");
   console.log(mdText);
+  console.log(typeof(mdText));
   return mdText; 
 };
 
 
 
 module.exports = generateProject;
-
-// module.exports = (generateData) => {
-//   console.log(generateData);
-
-//   //destructure project and about data from template
-//   //I can take the additional reference from the license here as license and then generate(license) down below like the generate(about)
-//   const { readMe } = generateData;
-
-//   return `
-//   ${generateProject(readMe)}
-//   ${generateProject}`;
-// };
-
-
-//   return `
-// # ${readMeArr.title}
-//   ${readMeArr.map(({ title, descriptionTitle }) => {
-//     if (!title) {
-//       readMeArr.descriptionTitle;
-//     } else {
-//     }
-//   })}`;
