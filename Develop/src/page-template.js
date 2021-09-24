@@ -23,16 +23,14 @@ const generateProject = (readMeArr) => {
 `);
     };
   format.push(`
-1. [Title](#title) 
-2. [Desciption Title](#descriptionTitle)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Credits](#credits)
-6. [License](#license)
-7. [Badges](#badges)
-8. [Features](#features)
-9. [Contributing](#contributing)
-10. [Tests](#tests)
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Credits](#credits)
+4. [License](#license)
+5. [Badges](#badges)
+6. [Features](#features)
+7. [Contributing](#contributing)
+8. [Tests](#tests)
 
 ## Installation
 
