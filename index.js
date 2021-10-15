@@ -34,11 +34,9 @@ const readMeTitle = () => {
       },
     ])
     .then((readMeData) => {
-      console.log("This is readMeData");
-      console.log(readMeData);
+      console.log("This is readMeData", readMeData);
       readMeObj = Object.assign(readMeData);
-      console.log("This is readMeObj with the first assign");
-      console.log(readMeObj);
+      console.log("This is readMeObj with the first assign", readMeObj);
       return readMeObj;
     });
 };
