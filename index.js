@@ -34,16 +34,16 @@ const readMeTitle = () => {
       },
     ])
     .then((readMeData) => {
-      console.log("This is readMeData", readMeData);
+      // console.log("This is readMeData", readMeData);
       readMeObj = Object.assign(readMeData);
-      console.log("This is readMeObj with the first assign", readMeObj);
+      // console.log("This is readMeObj with the first assign", readMeObj);
       return readMeObj;
     });
 };
 
 const readMeSections = () => {
   //test the readMeObj
-  console.log(readMeObj);
+  // console.log(readMeObj);
   return inquirer
     .prompt([
       {
@@ -74,8 +74,8 @@ const readMeSections = () => {
       },
     ])
     .then((readMeArrDesc) => {
-      console.log(readMeObj);
-      console.log(readMeArrDesc);
+      // console.log(readMeObj);
+      // console.log(readMeArrDesc);
       if (readMeArrDesc.confirmDescription) {
         readMeObj["descriptionTitle"] = readMeArrDesc.descriptionTitle;
         return readMeObj;
