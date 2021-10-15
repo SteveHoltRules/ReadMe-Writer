@@ -80,14 +80,36 @@ const readMeSections = () => {
       console.log(readMeArrDesc);
       if (readMeArrDesc.confirmDescription) {
         readMeObj["descriptionTitle"] = readMeArrDesc.descriptionTitle;
-        return readMeObj;
-      } else { 
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "description",
+              message: "What is your description title?",
+              when: ({ description }) => {
+                if (description) {
+                  return true;
+                } else {
+                  return false;
+                }
+              },
+            },
+          ])
+          .then((readDesc) => {
+            console.log(readDesc);
+            console.log(readMeObj);
+            if (readDesc.description) {
+              readMeObj["description"] = readDesc.description;
+              return readMeObj;
+            } else {
+              return readMeObj;
+            }
+          });
+      } else {
         return readMeObj;
       }
     });
 };
-
-
 
 const license = () => {
   //for the license - the template should include all of the formatting and just display the selected license + badge that is driven from the link
@@ -112,7 +134,7 @@ const license = () => {
       console.log("This license");
       console.log(licenseData);
       let licenseObj = Object.values(licenseData);
-      licenseObj.join(' ');
+      licenseObj.join(" ");
       console.log("This is readMeObj with the License assign");
       console.log(licenseObj);
       return licenseObj;
@@ -125,11 +147,11 @@ readMeTitle()
   .then((readMeObj) => {
     return generateProject(readMeObj);
   })
-  //my stuck - I am attempting to retrieve functions here and returning two separate strings. 
+  //my stuck - I am attempting to retrieve functions here and returning two separate strings.
   // .then(license)
   // .then((license) => {
   //   return renderLicenseSection(license);
   // })
   .then((generateMarkdown) => {
     writeFile(generateMarkdown);
-});
+  });

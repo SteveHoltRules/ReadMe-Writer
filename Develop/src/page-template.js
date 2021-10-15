@@ -11,15 +11,16 @@ const generateTOC = (aboutTOC) => {
 
 //How do I only pass into the generate projects the variables that are passed from the prompt?
 
-const generateProject = (readMeArr) => {
+const generateProject = (readMeArr, readDesc) => {
   console.log(readMeArr);
-  const remainder = Object.values(readMeArr);
+  console.log(readDesc);
+  const readTitle = Object.values(readMeArr);
   console.log("This is remainder");
   console.log(remainder);
   const format = []
-  for (var i = 0; i < remainder.length; i++) {
+  for (var i = 0; i < readTitle.length; i++) {
     format.push(`
-## ${remainder[i]}
+## ${readTitle[i]}
 `);
     };
   format.push(`

@@ -61,5 +61,6 @@ const licenseandBadge = (license) => {
   // console.log(renderBadge);
 };
 
+//Currently the export is not waiting on the API return
 module.exports = renderLicenseSection;
 // module.exports = licenseandBadge;
