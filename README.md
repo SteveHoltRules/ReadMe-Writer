@@ -18,14 +18,17 @@ This project uses inquirer to present switch cases to the user for input and val
 ## Usage
 This project can be used for any ReadMe file. 
 
+## Future Development
+I would like to be able to selectively generate difference sections of the generator based on the user feedback that would also tie into the table of contents. While the sections work independently, the license section is not currently self generating. This current rendition is based on a title and a description only. 
+
 ## License
 MIT
 
 ## Badges
-https://shields.io/github/MIT
 
 ## Features
 
 ## Contributing
 
-## Tests
+## Video Link
+https://youtu.be/_D5TYiczZ-Q
