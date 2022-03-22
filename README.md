@@ -1,19 +1,17 @@
-# title
-  ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
+  # Great Heights
+  ![GitHub license](https://img.shields.io/badge/license-Unlicense-blue.svg)
   
   ## Description
   
-  description
+  Take coding discovery to new heights
   
   ## Table of Contents
 
   * [Installation](#installation)
   * [Usage](#usage)
-  
-* [License](#license)
-
-  * [Credits](#credits)
   * [License](#license)
+  * [Credits](#credits)
   * [Badges](#badges)
   * [Features](#features)
   * [Contributing](#contributing)
@@ -29,15 +27,15 @@
   ```
 
   ## Usage
-  use it
+  Use this repo to learn more about stuff
 
   ## License 
     
-  This project is licensed under the MIT license.
+  This project is licensed under the Unlicense license.
 
   ## Contributing
 
-  contribute
+  Contribute and learn, tinker and remake
   
   ## Test
 
@@ -48,6 +46,6 @@
   ```
   
   ## Questions
-  If you have any questions about the repo, open an issue or contact me directly at address@email.com. You can find more of my work at [user](https://github.com/user/).
+  If you have any questions about the repo, open an issue or contact me directly at no.1checks@gmail.com. You can find more of my work at [SteveHoltRules](https://github.com/SteveHoltRules/).
   
   

@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 const generateMarkdown = require('./Develop/utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
-
+// Languages used to create this - are there badges for this?
 // const questions = []
 
 const questions = [
