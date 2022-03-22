@@ -1,60 +1,51 @@
 const fs = require('fs');
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-
-// If there is no license, return an empty string
-// function renderLicenseBadge(license) {}
-
-const renderLicenseBadge = (userName, repoName) => {
-  //set username - repo data - from example walkthrough
-  `https://shields.io/github/issues/${userName}/${repoName}`;
+//Create a function that returns a license badge based on which license is passed in
+function renderLicenseBadge(license) {
+  if (license !== "None") {
+   
+    return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`;
+  }
+  // If there is no license, return an empty string
+  return "";
 };
 
 console.log(renderLicenseBadge());
 
-// TODO: Create a function that returns the license link
+// Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-   var license = getlicense;
-  `https://shields.io/github/${license}/${userName}/${repoName}`//return the license link from the license json based on input
-  `https://shields.io/github/${license}/${userName}/${repoName}`;
+  if (license !== 'None') {
+    return `\n* [License](#license)\n`;
+  }
+  return '';
 }
 
-//create the write file
-const writeFile = fileContent => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile('Develop/dist/README.md', fileContent, err => {
-      if (err) {
-        reject(err);
-        return;
-      }
+//Create a function tht returns the license section of the README
+function renderLicenseSection(license) {
+  if (license !== 'None') {
+    return `## License 
+    
+  This project is licensed under the ${license} license.`;
+  }
+  return '';
+}
+//Finish the rest tomorrow
+function generateMarkdown(data) {
+  return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
+  
+  ## Description
+  
+  ${data.description}
+  
+  ## Table of Contents
+  
+  * [Installation](#installation)
+  
+  *[Usage](#usage)
+  ${renderLicenseLink(data.license)}`
+}
 
-      resolve({
-        ok: true,
-        message: "File created!",
-      });
-    });
-  });
-};
 
-module.exports = { writeFile };
-
-// const copyFile = fileContent => {
-//   return new Promise((resolve, reject) => {
-//     fs.copyFile('./src/styles.css', '')
-//   })
-// }
-
-// TODO: Create a function to generate markdown for README
-// function generateMarkdown(data) {
-//   return `# ${data.title}
-
-// `;
-// }
-
-// const genearteMarkdown = (title, description, toc, ul, ol, li, links, features, contributing, tests) => {
-//   return `
-//   #${title}
-//   ${description}
-//   ${}`
-// }
+module.exports = generateMarkdown;

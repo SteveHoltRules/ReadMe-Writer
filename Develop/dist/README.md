@@ -1,7 +1,7 @@
 
-## ReadMe Generator
+## Retail Back
  
-## ReadMe Generator creates ReadMe files for your repositories
+## E-Commerce Back End Application
  
 1. [Installation](#installation)
 2. [Usage](#usage)
