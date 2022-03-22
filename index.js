@@ -4,10 +4,6 @@ const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require('./Develop/utils/generateMarkdown');
 
-const generateProject = require("./Develop/src/page-template.js");
-
-const renderLicenseSection = require("./Develop/src/license-template.js");
-
 // TODO: Create an array of questions for user input
 
 // const questions = []
@@ -15,8 +11,18 @@ const renderLicenseSection = require("./Develop/src/license-template.js");
 const questions = [
   {
     type: "input",
+    name: "github",
+    message: "What is your GitHub username?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is your email address?",
+  },
+  {
+    type: "input",
     name: "title",
-    message: "What is the title of your README?",
+    message: "What is the title of your project?",
     validate: (titleInput) => {
       if (titleInput) {
         return true;
@@ -26,6 +32,7 @@ const questions = [
       }
     },
   },
+  //how could I change this to add excemptions that would only include the sections selected instead of the whole piece?
   {
     type: "confirm",
     name: "confirmDescription",
@@ -34,7 +41,7 @@ const questions = [
   },
   {
     type: "input",
-    name: "descriptionTitle",
+    name: "description",
     message: "What is your description title?",
     when: ({ confirmDescription }) => {
       if (confirmDescription) {
@@ -66,9 +73,32 @@ const questions = [
       "GPL-3.0",
     ],
   },
+  {
+    type: "input",
+    name: "installation",
+    message: "What command should be run to install dependencies?",
+    default: "npm i",
+  },
+  {
+    type: "input",
+    name: "test",
+    message: "What command should be run to run tests?",
+    default: "npm test",
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "What does the user need to know about using the repo?",
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message: "What does the user need to know about contributing to the repo?",
+  },
 ];
 
 //create the write file
+//writefile takes in the path, then adds the name, and outputs to the path location
 const writeFile = (fileContent) => {
   return fs.writeFile("Develop/dist/README.md", fileContent, (err) => {
     if (err) {
@@ -90,8 +120,8 @@ const writeFile = (fileContent) => {
 //if I wanted to use different sections, how would I do that? components?
 function init() {
   inquirer.prompt(questions).then((inquirerResponses) => {
-    console.log("Generate README...");
-    writeFile("README.md", generateMarkdown({ ...inquirerResponses }));
+    console.log('Generate README...');
+    writeFile(generateMarkdown({ ...inquirerResponses }));
   });
 }
 

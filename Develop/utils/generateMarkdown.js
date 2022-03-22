@@ -31,6 +31,8 @@ function renderLicenseSection(license) {
   return '';
 }
 //Finish the rest tomorrow
+//from the Index.js inquirer response: data.license data.title data.descriptionTitle data
+
 function generateMarkdown(data) {
   return `# ${data.title}
   ${renderLicenseBadge(data.license)}
@@ -40,11 +42,47 @@ function generateMarkdown(data) {
   ${data.description}
   
   ## Table of Contents
-  
+
   * [Installation](#installation)
+  * [Usage](#usage)
+  ${renderLicenseLink(data.license)}
+  * [Credits](#credits)
+  * [License](#license)
+  * [Badges](#badges)
+  * [Features](#features)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
   
-  *[Usage](#usage)
-  ${renderLicenseLink(data.license)}`
+  ## Installation
+
+  To install necssary dependencies, run the following command:
+
+  \`\`\`
+  ${data.installation}
+  \`\`\`
+
+  ## Usage
+  ${data.usage}
+
+  ${renderLicenseSection(data.license)}
+
+  ## Contributing
+
+  ${data.contributing}
+  
+  ## Test
+
+  To run test, run the following command: 
+  
+  \`\`\`
+  ${data.test}
+  \`\`\`
+  
+  ## Questions
+  If you have any questions about the repo, open an issue or contact me directly at ${data.email}. You can find more of my work at [${data.github}](https://github.com/${data.github}/).
+  
+  `;
 }
 
 
