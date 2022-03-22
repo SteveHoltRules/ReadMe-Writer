@@ -34,7 +34,8 @@ function renderLicenseSection(license) {
 //from the Index.js inquirer response: data.license data.title data.descriptionTitle data
 
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `
+  #${data.title}
   ${renderLicenseBadge(data.license)}
   
   ## Description
@@ -47,7 +48,6 @@ function generateMarkdown(data) {
   * [Usage](#usage)
   ${renderLicenseLink(data.license)}
   * [Credits](#credits)
-  * [License](#license)
   * [Badges](#badges)
   * [Features](#features)
   * [Contributing](#contributing)

@@ -1,9 +1,9 @@
-# Sample Markdown
-  ![GitHub license](https://img.shields.io/badge/license-Unlicense-blue.svg)
+# title
+  ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
   
   ## Description
   
-  This is a sample markdown
+  description
   
   ## Table of Contents
 
@@ -29,15 +29,15 @@
   ```
 
   ## Usage
-  This repo will generate a sample markdown file that can be used as an outline
+  use it
 
   ## License 
     
-  This project is licensed under the Unlicense license.
+  This project is licensed under the MIT license.
 
   ## Contributing
 
-  Contribute at will
+  contribute
   
   ## Test
 
@@ -48,6 +48,6 @@
   ```
   
   ## Questions
-  If you have any questions about the repo, open an issue or contact me directly at no.1checks@gmail.com. You can find more of my work at [SteveHoltRules](https://github.com/SteveHoltRules/).
+  If you have any questions about the repo, open an issue or contact me directly at address@email.com. You can find more of my work at [user](https://github.com/user/).
   
   

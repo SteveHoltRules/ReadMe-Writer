@@ -99,18 +99,8 @@ const questions = [
 
 //create the write file
 //writefile takes in the path, then adds the name, and outputs to the path location
-const writeFile = (fileContent) => {
-  return fs.writeFile("Develop/dist/README.md", fileContent, (err) => {
-    if (err) {
-      reject(err);
-      return;
-    }
-
-    resolve({
-      ok: true,
-      message: "File created!",
-    });
-  });
+function writeFile (filename, data) {
+  return fs.writeFileSync(path.join(process.cwd(), filename), data);
 };
 
 //generate the questions
@@ -121,7 +111,7 @@ const writeFile = (fileContent) => {
 function init() {
   inquirer.prompt(questions).then((inquirerResponses) => {
     console.log('Generate README...');
-    writeFile(generateMarkdown({ ...inquirerResponses }));
+    writeFile('README.md',generateMarkdown({ ...inquirerResponses }));
   });
 }
 
