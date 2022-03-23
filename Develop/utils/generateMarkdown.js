@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 //Create a function that returns a license badge based on which license is passed in
 function renderLicenseBadge(license) {
   if (license !== "None") {
@@ -10,13 +11,25 @@ function renderLicenseBadge(license) {
   return "";
 };
 
-console.log(renderLicenseBadge());
+function renderBadge(badge) {
+  if (license !== 'None') {
+    return 
+    // If I use this type of setup without a json array, then I am recreating this for each item that is different
+  }
+}
 
 // Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== 'None') {
     return `* [License](#license)`;
+  }
+  return '';
+}
+
+function badgeLink(badge) {
+  if (badge !== "None") {
+    return `* [Badges](#badges)`;
   }
   return '';
 }
@@ -30,8 +43,6 @@ function renderLicenseSection(license) {
   }
   return '';
 }
-//Finish the rest tomorrow
-//from the Index.js inquirer response: data.license data.title data.descriptionTitle data
 
 function generateMarkdown(data) {
   return `
