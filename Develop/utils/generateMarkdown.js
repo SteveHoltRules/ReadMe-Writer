@@ -65,7 +65,10 @@ function generateMarkdown(data) {
   console.log(data.language)
   return `
   # ${data.title}
-  ${renderLicenseBadge(data.license)} ${renderLanguageBadge(data.language)}
+  ${renderLicenseBadge(data.license)} 
+  
+  This program was written in ${data.language}.
+  ${renderLanguageBadge(data.language)}
   
   ## Description
   
