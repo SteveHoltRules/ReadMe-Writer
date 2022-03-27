@@ -1,4 +1,21 @@
 const fs = require('fs');
+const jsonReader = require('./readbadgesindex');
+const badgePath = './Develop/src/badges-index.json';
+const languagePath = require('../src/badges-index.json')
+
+
+// const langString = "JavaScript";
+
+function renderLanguageBadge(language) {
+  //return the function to call the value to this place
+  //this will now return what this function returns
+  return jsonReader('./Develop/src/badges-index.json', language, (err, customer) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+  });
+};
 
 
 //Create a function that returns a license badge based on which license is passed in
@@ -45,9 +62,10 @@ function renderLicenseSection(license) {
 }
 
 function generateMarkdown(data) {
+  console.log(data.language)
   return `
   # ${data.title}
-  ${renderLicenseBadge(data.license)}
+  ${renderLicenseBadge(data.license)} ${renderLanguageBadge(data.language)}
   
   ## Description
   
@@ -91,10 +109,13 @@ function generateMarkdown(data) {
   \`\`\`
   
   ## Questions
-  If you have any questions about the repo, open an issue or contact me directly at ${data.email}. You can find more of my work at [${data.github}](https://github.com/${data.github}/).
+  If you have any questions about the repo, open an issue or contact me directly at ${
+    data.email
+  }. You can find more of my work at [${data.github}](https://github.com/${
+    data.github
+  }/).
   
   `;
 }
-
 
 module.exports = generateMarkdown;

@@ -7,6 +7,7 @@ const generateMarkdown = require('./Develop/utils/generateMarkdown');
 // TODO: Create an array of questions for user input
 // Languages used to create this - are there badges for this?
 // const questions = []
+const badgesIndex = require('./Develop/src/badges-index.json')
 
 const questions = [
   {
@@ -58,6 +59,18 @@ const questions = [
         return false;
       }
     },
+  },
+  {
+    type: "list",
+    name: "language",
+    message: "What type of language is this written in?",
+    choices: [
+      'C#',
+      'JavaScript',
+      'Python',
+      'GraphQl',
+      'Swift',
+    ],
   },
   {
     type: "list",
