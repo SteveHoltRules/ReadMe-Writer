@@ -74,6 +74,18 @@ const questions = [
   },
   {
     type: "list",
+    name: "database",
+    message: "What database will this program connect with?",
+    choices: [
+      'Amazon DynamoDB',
+      'Microsoft SQL Server',
+      'MongoDB',
+      'MySQL',
+      'SQLite',
+    ]
+  },
+  {
+    type: "list",
     name: "license",
     message: "What type of license is included for this project?",
     choices: [

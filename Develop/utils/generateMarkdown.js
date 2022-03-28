@@ -1,5 +1,5 @@
 const fs = require('fs');
-const jsonReader = require('./readbadgesindex');
+const badgeReader = require('./readbadgesindex');
 const badgePath = './Develop/src/badges-index.json';
 const languagePath = require('../src/badges-index.json')
 
@@ -9,7 +9,18 @@ const languagePath = require('../src/badges-index.json')
 function renderLanguageBadge(language) {
   //return the function to call the value to this place
   //this will now return what this function returns
-  return jsonReader('./Develop/src/badges-index.json', language, (err, customer) => {
+  return badgeReader('./Develop/src/badges-index.json', 'languages', language, (err, customer) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+  });
+};
+
+function renderDataBaseBadge(database) {
+  //return the function to call the value to this place
+  //this will now return what this function returns
+  return badgeReader('./Develop/src/badges-index.json', 'databases', database, (err, customer) => {
     if (err) {
       console.log(err);
       return;
@@ -28,12 +39,6 @@ function renderLicenseBadge(license) {
   return "";
 };
 
-function renderBadge(badge) {
-  if (license !== 'None') {
-    return 
-    // If I use this type of setup without a json array, then I am recreating this for each item that is different
-  }
-}
 
 // Create a function that returns the license link
 // If there is no license, return an empty string
@@ -63,6 +68,7 @@ function renderLicenseSection(license) {
 
 function generateMarkdown(data) {
   console.log(data.language)
+  console.log(data.database)
   return `
   # ${data.title}
   ${renderLicenseBadge(data.license)} 
@@ -70,6 +76,9 @@ function generateMarkdown(data) {
   This program was written in ${data.language}.
   ${renderLanguageBadge(data.language)}
   
+  The database is written in ${data.database}.
+  ${renderDataBaseBadge(data.database)}
+
   ## Description
   
   ${data.description}
